@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "d0396ee9-e195-4481-8e5d-a9c81b2964b4",
+		"name": "mybackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello-resteasy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/mybackend/resources/hello-resteasy",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"mybackend",
+						"resources",
+						"hello-resteasy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create personas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"apellidos\": \"Rivera-Mancia\",\n    \"email\": \"xtecuan@xtesoft.com\",\n    \"nombres\": \"Tadeo\",\n    \"usuario\": \"xtecuan\",\n    \"nota\": 10\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8443/mybackend/resources/personas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"mybackend",
+						"resources",
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update personas",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"apellidos\": \"Rivera-Pineda\",\n    \"email\": \"xtecuan@protonmail.com\",\n    \"nombres\": \"Tadeo\",\n    \"nota\": 10.0,\n    \"usuario\": \"xtecuan\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8443/mybackend/resources/personas/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"mybackend",
+						"resources",
+						"personas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete personas",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/mybackend/resources/personas/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"mybackend",
+						"resources",
+						"personas",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list all personas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/mybackend/resources/personas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"mybackend",
+						"resources",
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list by id personas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/mybackend/resources/personas/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"mybackend",
+						"resources",
+						"personas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
