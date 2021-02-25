@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.quarkus.io/vcs-url: https://github.com/xtecuan/mybackend.git
+  labels:
+    app.kubernetes.io/name: mybackend
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  name: mybackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mybackend
+      app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/vcs-url: https://github.com/xtecuan/mybackend.git
+      labels:
+        app.kubernetes.io/name: mybackend
+        app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 129.213.115.70
+          - 10.96.5.5
+        searches:
+          - xtesoft.com
+          - default.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+          - xtecuanufoclust.oraclevcn.com
+          - sub5bf0c41d3.xtecuanufoclust.oraclevcn.com
+        options:
+          - name: ndots
+            value: "5"
+          - name: edns0
+      hostAliases:
+        - ip: 158.101.117.104
+          hostnames:
+            - instance3.xtesoft.com
+        - ip: 10.96.195.48
+          hostnames:
+            - digestycapi.xtesoft.com
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_HOST
+                  name: mybackend-config
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: mybackend-config
+            - name: KEYCLOAK_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: KEYCLOAK_PORT
+                  name: mybackend-config
+            - name: KEYSTORE_TYPE
+              valueFrom:
+                configMapKeyRef:
+                  key: KEYSTORE_TYPE
+                  name: mybackend-config
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: mybackend-config
+            - name: KEYSTORE_PASS
+              valueFrom:
+                configMapKeyRef:
+                  key: KEYSTORE_PASS
+                  name: mybackend-config
+            - name: KEYCLOAK_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: KEYCLOAK_HOST
+                  name: mybackend-config
+            - name: KEYSTORE_FILE
+              valueFrom:
+                configMapKeyRef:
+                  key: KEYSTORE_FILE
+                  name: mybackend-config
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: mybackend-config
+          image: iad.ocir.io/idi7hukj6eay/revfarepo/mybackend:1.0.0-SNAPSHOT
+          imagePullPolicy: Always
+          name: mybackend
+          ports:
+            - containerPort: 8443
+              name: http
+              protocol: TCP
+      imagePullSecrets:
+        - name: xtecuansecret
+      serviceAccount: mybackend
+
